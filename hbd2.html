@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neil Akobe 🎉</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Raleway&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow-x: hidden;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            text-transform: uppercase;
+            font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+            letter-spacing: 0.35em;
+            color: rgba(4, 170, 247, 0.4);
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: rgb(8, 223, 223);
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 30px;
+        }
+
+        .button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            padding: 10px 15px;
+            background: rgb(8, 207, 214);
+            color: #000;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .cake {
+            width: clamp(180px, 40vw, 320px);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: 1s ease;
+            filter: drop-shadow(0 0 30px gold);
+        }
+
+        .cake.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cake-text {
+            margin-top: 20px;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: gold;
+            opacity: 0;
+            transition: 1s;
+            letter-spacing: 0.1em;
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 700;
+        }
+
+        .cake-text.show {
+            opacity: 1;
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            color: #fff;
+            max-width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="hbd.html" class="button">⬅ Back</a>
+
+    <section>
+        <h1>Swipe for surprise ahah</h1>
+    </section>
+
+    <section id="cake-section">
+        <img src="cake.png" class="cake">
+        <div class="cake-text">🎂 HAPPY BIRTHDAY KING NEIL 🎂</div>
+        <p>
+            Que ta vie soit pleine de joie et de bonheur ! <br>
+            Je souhaite que tous tes rêves deviennent réalité ✨
+        </p>
+    </section>
+
+    <audio id="music" src="hbd.mp3"></audio>
+
+    <script>
+        const cake = document.querySelector(".cake");
+        const cakeText = document.querySelector(".cake-text");
+        const music = document.getElementById("music");
+        let musicPlayed = false;
+
+        window.addEventListener("scroll", () => {
+            const cakeSection = document.getElementById("cake-section").getBoundingClientRect();
+            if (cakeSection.top < window.innerHeight / 1.5 && !musicPlayed) {
+                music.play().catch(() => { });
+                musicPlayed = true;
+                cake.classList.add("show");
+                setTimeout(() => {
+                    cakeText.classList.add("show");
+                }, 500);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
